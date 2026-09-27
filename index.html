@@ -1,26 +1,168 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doyzz Downloader - Permanen No Limit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SEVENNDE SMPKUBA </title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#0f0f0f;color:#fff;min-height:100vh}
-.header{padding:16px;display:flex;justify-content:space-between;background:#121212;border-bottom:1px solid #222;position:sticky;top:0}
-.logo{font-weight:800}.logo span{color:#ff3b5c}
-.badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:11px;color:#00ff88}
-.container{max-width:600px;margin:0 auto;padding:20px 16px}
-.card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:20px}
-.input-wrap{background:#0f0f0f;border:1px solid #333;border-radius:12px;display:flex;padding:4px;margin-top:16px}
-.input-wrap input{flex:1;background:transparent;border:none;color:#fff;padding:12px;outline:none}
-.btn{background:#ff3b5c;color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:700}
-.platforms{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
-.plat{background:#222;border:1px solid #333;padding:5px 10px;border-radius:20px;font-size:11px}
-.result{display:none;margin-top:20px}
-.video-preview{width:100%;border-radius:12px;background:#000;max-height:450px}
-.dl-btn{background:#222;border:1px solid #333;color:#fff;padding:14px;border-radius:10px;text-decoration:none;display:flex;justify-content:space-between;margin-top:10px;font-weight:600}
-.dl-btn.primary{background:#ff3b5c;border-color:#ff3b5c}
-.status{padding:10px;border-radius:10px;font-size:12px;margin-top:10px;display:none}
-.status.ok{background:#152a1a;color:#4eff88;border:1px solid #224a2a}
-.status.err
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;background:#0a0a0a;display:flex;justify-content:center;padding:12px;font-family:Arial Black}
+#bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#7c3aed,#2e1065,#000000);z-index:0}
+#blur{position:fixed;inset:0;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);background:rgba(0,0,0,0.55);z-index:1}
+#wrap{position:relative;z-index:10;width:100%;max-width:480px}
+#card{background:white;border-radius:28px;overflow:hidden;border:4px solid black;box-shadow:0 0 50px rgba(124,58,237,0.5),0 25px 80px rgba(0,0,0,0.9)}
+#top{background:#e10600;padding:18px 15px 10px;text-align:center;position:relative}
+#top h1{color:white;font-size:52px;letter-spacing:5px;line-height:0.9;text-shadow:3px 3px 0 black}
+#top p{color:white;font-size:14px;letter-spacing:4px;margin-top:4px}
+#spray{position:absolute;left:50%;top:78%;transform:translateX(-50%);width:180px;height:18px;background:#8a0000;border-radius:50%;filter:blur(4px);opacity:0.8}
+#mid{padding:22px 15px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:white;border-top:4px solid black;border-bottom:4px solid black}
+#graffiti{font-family:Impact,Arial Black; font-size:54px; line-height:0.85; color:#5b21b6; text-transform:lowercase; transform:rotate(-4deg) skew(-8deg); text-shadow:4px 4px 0 white, 9px 9px 0 #1e1b4b, 0 0 30px rgba(91,33,182,0.8); text-align:center; font-weight:900; letter-spacing:-1px}
+#angkatan{margin-top:8px;background:black;color:white;padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;transform:rotate(-2deg)}
+#redbar{background:#e10600;height:20px;border-bottom:4px solid black}
+#content{padding:14px;background:#f4f4f5;max-height:62vh;overflow-y:auto}
+#nama{width:100%;padding:13px 14px;border:3px solid black;border-radius:14px;font-family:Arial;font-weight:900;font-size:14px;margin-bottom:12px;outline:none}
+#nama:focus{border-color:#5b21b6;box-shadow:0 0 0 3px rgba(91,33,182,0.2)}
+.month{background:white;border:3px solid black;border-radius:16px;padding:10px;margin-bottom:14px;box-shadow:4px 4px 0 black}
+.month-title{background:black;color:white;display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.d{border:2px solid #e5e7eb;border-radius:10px;padding:7px 1px;text-align:center;font-size:11px;cursor:pointer;user-select:none;transition:0.15s;font-family:Arial Black;background:white}
+.d.head{border:none;font-size:9px;color:#9ca3af;background:transparent}
+.d:active{transform:scale(0.92)}
+.d.done{background:#5b21b6;color:white;border-color:#5b21b6;box-shadow:0 0 12px rgba(91,33,182,0.6);transform:scale(1.05)}
+.d.today{border-color:#e10600;background:#e10600;color:white;animation:blink 1s infinite}
+@keyframes blink{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+#stats{background:black;color:white;border-radius:12px;padding:10px 14px;display:flex;justify-content:space-between;font-size:12px;margin-bottom:12px;font-family:Arial}
+#btns{display:flex;gap:10px;position:sticky;bottom:0;background:#f4f4f5;padding:12px 0 4px}
+.btn{flex:1;padding:15px;border:3px solid black;border-radius:999px;font-weight:900;cursor:pointer;font-size:13px;letter-spacing:0.5px;transition:0.2s}
+.btn:active{transform:scale(0.96)}
+#reset{background:white;color:black}
+#kirim{background:linear-gradient(135deg,#5b21b6,#e10600);color:white;box-shadow:0 8px 20px rgba(91,33,182,0.4)}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="blur"></div>
+<div id="wrap">
+<div id="card">
+  <div id="top"><h1>HELLO</h1><p>MY CLASS IS</p><div id="spray"></div></div>
+  <div id="mid"><div id="graffiti">sevennde<br>smrkuba</div><div id="angkatan">ANGKATAN 2026 • ABSEN SAMPE JULI</div></div>
+  <div id="redbar"></div>
+  <div id="content">
+    <input id="nama" placeholder="Tulis nama lu (contoh: Doyz - 7D)">
+    <div id="stats"><span id="total">Hadir: 0 hari</span><span id="todayTxt"></span></div>
+    <div id="list"></div>
+    <div id="btns">
+      <button class="btn" id="reset">RESET</button>
+      <button class="btn" id="kirim">📧 KIRIM KE GMAIL</button>
+    </div>
+    <p style="font-family:Arial;font-size:9px;text-align:center;margin-top:10px;color:#6b7280;line-height:1.4">✅ Anti refresh • Kesimpen otomatis<br>📧 Auto kirim ke: doyzzkaciw@gmail.com</p>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+const KEY = 'SMRKUBA_JULI_FINAL_V3';
+let data = {};
+try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ data = {}; }
+
+const list = document.getElementById('list');
+const totalEl = document.getElementById('total');
+const todayTxt = document.getElementById('todayTxt');
+const namaInput = document.getElementById('nama');
+
+// Load nama
+try{ namaInput.value = localStorage.getItem(KEY+'_nama') || ''; }catch(e){}
+namaInput.addEventListener('input', ()=>{ localStorage.setItem(KEY+'_nama', namaInput.value); });
+
+const start = new Date();
+const end = new Date(2027, 6, 31); // 31 JULI 2027
+
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(data));
+  // backup ganda
+  try{ sessionStorage.setItem(KEY, JSON.stringify(data)); }catch(e){}
+}
+
+function render(){
+  list.innerHTML = '';
+  let cur = new Date(start.getFullYear(), start.getMonth(), 1);
+  const todayStr = new Date().toISOString().slice(0,10);
+  todayTxt.textContent = new Date().toLocaleDateString('id-ID', {weekday:'short', day:'numeric', month:'short'});
+
+  while(cur <= end){
+    const y = cur.getFullYear(), m = cur.getMonth();
+    const box = document.createElement('div'); box.className = 'month';
+    const title = cur.toLocaleDateString('id-ID', {month:'long', year:'numeric'}).toUpperCase();
+    box.innerHTML = `<div class="month-title">${title}</div><div class="grid"></div>`;
+    const grid = box.querySelector('.grid');
+
+    ['MG','SN','SL','RB','KM','JM','SB'].forEach(h=>{
+      const d=document.createElement('div'); d.className='d head'; d.textContent=h; grid.appendChild(d);
+    });
+
+    const firstDay = new Date(y,m,1).getDay();
+    for(let i=0;i<firstDay;i++){ const e=document.createElement('div'); grid.appendChild(e); }
+
+    const daysInMonth = new Date(y,m+1,0).getDate();
+    for(let d=1; d<=daysInMonth; d++){
+      const str = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const el = document.createElement('div'); el.className = 'd';
+      if(data[str]) el.classList.add('done');
+      if(str === todayStr) el.classList.add('today');
+      el.innerHTML = `${d}<br>${data[str]?'✅':'○'}`;
+      el.onclick = ()=>{
+        data[str] =!data[str];
+        if(!data[str]) delete data[str];
+        save(); render();
+        if(navigator.vibrate) navigator.vibrate(40);
+      };
+      grid.appendChild(el);
+    }
+    list.appendChild(box);
+    cur.setMonth(cur.getMonth()+1);
+  }
+  const hadir = Object.keys(data).filter(k=>data[k]).length;
+  totalEl.textContent = `Hadir: ${hadir} hari`;
+}
+
+// ANTI REFRESH FIX
+window.addEventListener('beforeunload', save);
+setInterval(save, 1500);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) save(); });
+
+document.getElementById('reset').onclick = ()=>{
+  if(confirm('Yakin mau reset semua absen sampe Juli?')){ data={}; save(); render(); }
+};
+
+document.getElementById('kirim').onclick = async ()=>{
+  const nama = namaInput.value.trim() || 'SEVENNDE SMRKUBA';
+  const hadir = Object.keys(data).filter(k=>data[k]).sort();
+  if(hadir.length===0){ alert('Belum ada absen yang diklik pung! Klik tanggal dulu!'); return; }
+  const txt = `ABSEN SEVENNDE SMRKUBA - SAMPE JULI\n\nNama: ${nama}\nTotal Hadir: ${hadir.length} hari\nPeriode: Sep 2026 - 31 Juli 2027\nTanggal Kirim: ${new Date().toLocaleString('id-ID')}\n\nDAFTAR HADIR:\n${hadir.join('\n')}\n\nLink absen: ${location.href}`;
+
+  const btn = document.getElementById('kirim');
+  btn.textContent='⏳ MENGIRIM...'; btn.disabled=true;
+
+  try{
+    const res = await fetch('https://formsubmit.co/ajax/doyzzkaciw@gmail.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({subject:`[ABSEN JULI] ${nama} - ${hadir.length} hari`, message:txt, _captcha:'false', _template:'table'})
+    });
+    if(res.ok){
+      alert(`✅ BERHASIL!\n\n${hadir.length} hari absen atas nama "${nama}" udah kekirim ke\n\ndoyzzkaciw@gmail.com\n\nCek inbox / spam ya pung!`);
+      btn.textContent='✅ TERKIRIM';
+    }else throw new Error('fail');
+  }catch(e){
+    // fallback mailto
+    window.location.href = `mailto:doyzzkaciw@gmail.com?subject=${encodeURIComponent('[ABSEN JULI] '+nama)}&body=${encodeURIComponent(txt)}`;
+    btn.textContent='📧 BUKA GMAIL';
+  }
+  setTimeout(()=>{btn.textContent='📧 KIRIM KE GMAIL'; btn.disabled=false;},4000);
+};
+
+render();
+</script>
+</body>
+</html>
