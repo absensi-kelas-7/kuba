@@ -2,176 +2,161 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SEVENNDE SMPKUBA </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABSEN SAKIT/IZIN 7D</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial Black}
-#bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 15%,#7c3aed 0%,#4c1d95 30%,#000 75%);z-index:0}
-#blur{position:fixed;inset:0;backdrop-filter:blur(35px);-webkit-backdrop-filter:blur(35px);background:rgba(0,0,0,0.65);z-index:1}
-
-#wrap{position:relative;z-index:10;width:100%;height:100%;display:flex;justify-content:center;align-items:center;padding:14px}
-
-#card{width:100%;max-width:440px;background:#fff;border-radius:30px;overflow:hidden;border:4px solid #000;box-shadow:0 0 80px rgba(124,58,237,0.8),0 30px 100px rgba(0,0,0,1);display:flex;flex-direction:column;max-height:96vh}
-
-#top{background:#e10600;padding:18px;text-align:center;position:relative;flex-shrink:0}
-#top h1{color:#fff;font-size:54px;letter-spacing:6px;line-height:0.9;text-shadow:4px 4px 0 #000}
-#top p{color:#fff;font-size:14px;letter-spacing:5px;margin-top:3px}
-#drip{position:absolute;left:50%;top:82%;transform:translateX(-50%);width:210px;height:20px;background:#7a0000;border-radius:50%;filter:blur(4px)}
-
-#mid{padding:28px 18px;background:#fff;border-top:4px solid #000;border-bottom:4px solid #000;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;min-height:170px}
-#graffiti{font-family:Impact,Arial Black;font-size:58px;line-height:0.85;color:#5b21b6;text-transform:lowercase;transform:rotate(-4deg) skew(-7deg);text-shadow:5px 5px 0 #fff,11px 11px 0 #1e1b4b,0 0 40px rgba(91,33,182,1);text-align:center}
-#tag{position:absolute;right:10px;top:10px;writing-mode:vertical-rl;font-size:11px;letter-spacing:3px}
-
-#content{padding:14px;background:#f4f4f5;overflow-y:auto;flex:1}
-#nama{width:100%;padding:14px 14px;border:3px solid #000;border-radius:14px;font-family:Arial;font-weight:900;font-size:14px;outline:none;margin-bottom:12px}
-#nama:focus{border-color:#5b21b6;box-shadow:0 0 0 3px rgba(91,33,182,0.2)}
-
-.label{font-family:Arial;font-size:10px;font-weight:900;letter-spacing:2px;margin-bottom:8px;color:#000}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.btnAbsen{padding:20px 8px;border:3.5px solid #000;border-radius:20px;font-weight:900;font-size:18px;cursor:pointer;transition:0.12s;color:#fff;position:relative;overflow:hidden;letter-spacing:0.5px}
-.btnAbsen:active{transform:scale(0.93)}
-.btnAbsen::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:0.2s}
-.btnAbsen:active::after{opacity:1}
-#btnSakit{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 6px 0 #000,0 10px 20px rgba(245,158,11,0.4)}
-#btnIzin{background:linear-gradient(135deg,#3b82f6,#1d4ed8);box-shadow:0 6px 0 #000,0 10px 20px rgba(59,130,246,0.4)}
-
-#listWrap{background:#fff;border:3.5px solid #000;border-radius:16px;padding:10px;margin-bottom:12px;min-height:90px;max-height:28vh;overflow-y:auto}
-#listTitle{font-size:10px;letter-spacing:1.5px;background:#000;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;margin-bottom:8px}
-.item{font-family:Arial;font-size:12px;font-weight:800;padding:8px 6px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
-#empty{font-family:Arial;font-size:11px;text-align:center;color:#9ca3af;padding:18px}
-
-#kirim{width:100%;padding:15px;background:#000;color:#fff;border:3.5px solid #000;border-radius:999px;font-weight:900;font-size:14px;letter-spacing:1px;cursor:pointer;box-shadow:0 5px 0 #333;transition:0.12s}
-#kirim:active{transform:translateY(3px);box-shadow:0 2px 0 #333}
-
-/* ANIMASI FULL - TEKS GAK PATAH SAMA SEKALI */
-#animOverlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;overflow:hidden}
-#animOverlay.show{display:flex}
-#animText{font-family:Impact,Arial Black;white-space:nowrap;word-break:keep-all;font-size:clamp(28px, 9vw, 72px);color:#fff;letter-spacing:3px;text-shadow:0 0 20px #7c3aed,0 0 60px #e10600,7px 7px 0 #000;transform:scale(0.05);opacity:0;will-change:transform,opacity,filter}
-#animText.animate{animation:absenFull 3.8s cubic-bezier(0.34,1.56,0.64,1) forwards}
-
-@keyframes absenFull{
-  0%{transform:scale(0.05) rotate(-12deg);opacity:0;filter:blur(30px)}
-  28%{transform:scale(1.2) rotate(2deg);opacity:1;filter:blur(0px)}
-  38%{transform:scale(1) rotate(0deg);opacity:1;filter:blur(0px)}
-  68%{transform:scale(1) rotate(0deg);opacity:1;filter:blur(0px)} /* DIEM 1.1 DETIK DI TENGAH */
-  100%{transform:scale(35) rotate(3deg);opacity:0;filter:blur(40px)}
-}
-
-#footer{font-family:Arial;font-size:8px;text-align:center;color:#9ca3af;margin-top:8px;letter-spacing:1px;line-height:1.4}
+body{background:#000;color:#fff;font-family:Arial Black;min-height:100vh;display:flex;justify-content:center;padding:16px}
+#bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 10%,#ffeb3b,#e10600 40%,#000 80%);z-index:0}
+#blur{position:fixed;inset:0;backdrop-filter:blur(40px);background:rgba(0,0,0,0.6);z-index:1}
+#wrap{position:relative;z-index:10;width:100%;max-width:380px}
+#card{background:#fff;color:#000;border-radius:30px;border:5px solid #000;box-shadow:0 0 0 4px #fff,0 0 80px rgba(225,6,0,0.6);overflow:hidden}
+#top{background:#000;color:#fff;padding:22px;text-align:center}
+#top h1{font-size:38px;letter-spacing:4px;line-height:0.9}
+#top h1 span{color:#ffeb3b}
+#top p{font-family:Arial;font-size:9px;letter-spacing:4px;color:#888;margin-top:6px}
+#content{padding:20px}
+#user{font-family:Arial;font-size:11px;font-weight:900;background:#000;color:#fff;padding:8px 14px;border-radius:999px;display:inline-block;margin-bottom:14px;border:2px solid #000}
+#grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.btn{padding:18px;border:4px solid #000;border-radius:18px;font-weight:900;font-size:14px;cursor:pointer;box-shadow:0 5px 0 #000;transition:0.1s;text-align:center}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #000}
+.btn.active{transform:translateY(4px);box-shadow:0 1px 0 #000;outline:4px solid #000}
+#sakit{background:#ffeb3b;color:#000} #izin{background:#7c3aed;color:#fff}
+#alasan{width:100%;padding:14px;border:4px solid #000;border-radius:14px;font-family:Arial;font-weight:900;margin-bottom:14px;min-height:80px;resize:none}
+#kirim{width:100%;padding:16px;background:#000;color:#fff;border:4px solid #000;border-radius:18px;font-weight:900;font-size:15px;letter-spacing:2px;cursor:pointer;box-shadow:0 6px 0 #000;transition:0.1s}
+#kirim:active{transform:translateY(4px);box-shadow:0 2px 0 #000}
+#kirim:disabled{background:#999}
+#status{font-family:Arial;font-size:11px;font-weight:900;text-align:center;margin-top:12px;min-height:16px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(120px);background:#000;color:#fff;padding:12px 20px;border-radius:999px;border:3px solid #fff;font-family:Arial;font-size:11px;font-weight:900;transition:0.4s;z-index:200}
+#toast.show{transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
-<div id="bg"></div>
-<div id="blur"></div>
-
+<div id="bg"></div><div id="blur"></div>
 <div id="wrap">
 <div id="card">
-  <div id="top"><h1>HELLO</h1><p>MY NAME IS</p><div id="drip"></div></div>
-  <div id="mid">
-    <div id="graffiti">sevennde<br>smpkuba</div>
-    <div id="tag">ANGKATAN 2026</div>
-  </div>
-  <div style="background:#e10600;height:16px;border-top:4px solid #000;flex-shrink:0"></div>
-
-  <div id="content">
-    <input id="nama" placeholder="Nama lu... contoh: Doyz - 7D" autocomplete="off">
-    
-    <div class="label">PILIH KETERANGAN ABSEN 👇 (TOMBOL GEDE)</div>
-    <div class="row">
-      <button class="btnAbsen" id="btnSakit" onclick="doAbsen('SAKIT')">🤒 SAKIT</button>
-      <button class="btnAbsen" id="btnIzin" onclick="doAbsen('IZIN')">📄 IZIN</button>
-    </div>
-
-    <div id="listWrap">
-      <div id="listTitle">DAFTAR SAKIT / IZIN 7D</div>
-      <div id="list"></div>
-    </div>
-
-    <button id="kirim">📧 KIRIM SEMUA KE GMAIL</button>
-    <div id="footer">FULLSCREEN • SMPKUBA • ANTI REFRESH • KESIMPEN OTOMATIS<br>📧 doyzzkaciw@gmail.com</div>
-  </div>
+<div id="top">
+<h1>SAKIT<span>/</span>IZIN</h1>
+<p>ABSENSI 7D • SMPKUBA</p>
 </div>
+<div id="content">
+<div id="user">Loading...</div>
+
+<div id="grid">
+<button class="btn" id="sakit" onclick="pilih('Sakit')">🤒<br>SAKIT</button>
+<button class="btn" id="izin" onclick="pilih('Izin')">📝<br>IZIN</button>
 </div>
 
-<!-- ANIMASI -->
-<div id="animOverlay"><div id="animText">ABSEN 7D - SAKIT</div></div>
+<textarea id="alasan" placeholder="Tulis alasan sakit/izin lu... (wajib)"></textarea>
+
+<button id="kirim" onclick="kirim()">KIRIM KE GURU 🚀</button>
+<div id="status"></div>
+
+<div style="margin-top:16px;background:#f5f5f5;border:3px solid #000;border-radius:14px;padding:10px">
+<div style="font-size:10px;letter-spacing:2px;margin-bottom:6px">📋 HARI INI SAKIT/IZIN:</div>
+<div id="log" style="font-family:Arial;font-size:10px;color:#666">Belum ada</div>
+</div>
+
+<a href="./" style="display:block;text-align:center;margin-top:14px;font-family:Arial;font-size:10px;color:#999;text-decoration:none">← KEMBALI</a>
+<div style="text-align:center;font-family:Arial;font-size:7px;color:#ccc;margin-top:6px">Kirim ke: doyzzkaciw@gmail.com</div>
+</div>
+</div>
+</div>
+<div id="toast"></div>
 
 <script>
-const KEY='FULL_FINAL_SMPKUBA_7D_V5';
-let data=[];
-try{ data=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ data=[]; }
+const EMAIL='doyzzkaciw@gmail.com';
+let tipe='';
+let nama=localStorage.getItem('7D_USER')||'';
+if(!localStorage.getItem('7D_LOGIN')) location.href='./';
+document.getElementById('user').textContent='👤 '+nama.toUpperCase();
 
-const namaInput=document.getElementById('nama');
-const listEl=document.getElementById('list');
-const animOverlay=document.getElementById('animOverlay');
-const animText=document.getElementById('animText');
-
-namaInput.value=localStorage.getItem(KEY+'_nama')||'';
-namaInput.addEventListener('input',()=>localStorage.setItem(KEY+'_nama', namaInput.value));
-
-function save(){ localStorage.setItem(KEY, JSON.stringify(data)); }
-
-function render(){
-  if(data.length===0){
-    listEl.innerHTML='<div id="empty">Belum ada yang absen sakit/izin.<br>Klik tombol SAKIT / IZIN di atas 👆</div>';
-    return;
-  }
-  listEl.innerHTML='';
-  data.slice().reverse().forEach((d,i)=>{
-    const div=document.createElement('div'); div.className='item';
-    const color = d.status==='SAKIT' ? '#f59e0b' : '#3b82f6';
-    const dotColor = d.status==='SAKIT' ? '#f59e0b' : '#3b82f6';
-    div.innerHTML=`<span><span class="dot" style="background:${dotColor}"></span>${d.nama} <span style="color:#9ca3af;font-size:10px">• ${d.tgl}</span></span><span style="color:${color}">${d.status}</span>`;
-    listEl.appendChild(div);
+function pilih(t){
+  tipe=t;
+  document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(t.toLowerCase()).classList.add('active');
+  document.getElementById('alasan').placeholder='Tulis alasan '+t.toLowerCase()+' lu... (wajib)';
+  document.getElementById('alasan').focus();
+}
+function toast(m){
+  let el=document.getElementById('toast');
+  el.textContent=m; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),3000);
+}
+function load(){
+  let logs=JSON.parse(localStorage.getItem('ABSEN_SAKIT_IZIN')||'[]');
+  let today=new Date().toDateString();
+  let todayLogs=logs.filter(l=>l.date===today);
+  let logDiv=document.getElementById('log');
+  if(todayLogs.length==0){ logDiv.textContent='Belum ada'; return; }
+  logDiv.innerHTML='';
+  todayLogs.reverse().forEach(l=>{
+    let d=document.createElement('div');
+    d.style.padding='4px 0'; d.style.borderBottom='1px dashed #ccc';
+    d.innerHTML=`<b>${l.nama}</b> - ${l.tipe} (${l.time})<br><span style="color:#888">${l.alasan}</span>`;
+    logDiv.appendChild(d);
   });
 }
+load();
 
-function doAbsen(status){
-  const nama=namaInput.value.trim() || 'ANONIM 7D';
-  const tgl=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'short'})+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-  data.push({nama,status,tgl,ts:Date.now()});
-  save(); render();
+async function kirim(){
+  let alasan=document.getElementById('alasan').value.trim();
+  let status=document.getElementById('status');
+  let btn=document.getElementById('kirim');
 
-  // ANIMASI - TEKS GAK PATAH (nowrap)
-  animText.textContent=`ABSEN 7D - ${status}`;
-  animText.style.color = status==='SAKIT' ? '#fbbf24' : '#60a5fa';
-  animOverlay.classList.add('show');
-  animText.classList.remove('animate');
-  void animText.offsetWidth;
-  animText.classList.add('animate');
-  if(navigator.vibrate) navigator.vibrate([90,40,90]);
-  setTimeout(()=>animOverlay.classList.remove('show'),3700);
-}
+  if(!tipe){ toast('❌ Pilih Sakit atau Izin dulu!'); return; }
+  if(!alasan){ toast('❌ Isi alasan dulu jir!'); document.getElementById('alasan').style.borderColor='#e10600'; return; }
+  if(alasan.length<5){ toast('❌ Alasan kependekan!'); return; }
 
-document.getElementById('kirim').onclick=async()=>{
-  if(data.length===0){ alert('Belum ada absen pung! Klik SAKIT atau IZIN dulu!'); return; }
-  const btn=document.getElementById('kirim');
-  const txt=`ABSEN 7D - SEVENNDE SMPKUBA (SAKIT/IZIN)\n\nTotal: ${data.length} data\n\n`+data.map(d=>`${d.tgl} | ${d.nama} | ${d.status}`).join('\n')+`\n\nLink: ${location.href}`;
-  btn.textContent='⏳ MENGIRIM...'; btn.disabled=true;
+  btn.disabled=true; btn.textContent='MENGIRIM...';
+  status.textContent='Mengirim ke '+EMAIL+'...';
+
+  let now=new Date();
+  let data={
+    nama:nama,
+    tipe:tipe,
+    alasan:alasan,
+    waktu:now.toLocaleString('id-ID'),
+    tanggal:now.toLocaleDateString('id-ID'),
+    jam:now.toLocaleTimeString('id-ID')
+  };
+
   try{
-    const res=await fetch('https://formsubmit.co/ajax/doyzzkaciw@gmail.com',{
+    await fetch('https://formsubmit.co/ajax/'+EMAIL,{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({subject:`[7D SAKIT/IZIN] ${data.length} data`,message:txt,_captcha:'false',_template:'table'})
+      body:JSON.stringify({
+        _subject:'[7D] '+tipe.toUpperCase()+' - '+nama+' - '+data.tanggal,
+        _template:'table',
+        _captcha:'false',
+        Nama:nama,
+        Kelas:'7D SMPKUBA',
+        Tipe:tipe,
+        Alasan:alasan,
+        Tanggal:data.tanggal,
+        Jam:data.jam,
+        Waktu:data.waktu
+      })
     });
-    if(res.ok){ alert(`✅ BERHASIL!\n\n${data.length} data absen sakit/izin udah kekirim ke\ndoyzzkaciw@gmail.com`); btn.textContent='✅ TERKIRIM'; }
-    else throw new Error();
+
+    let logs=JSON.parse(localStorage.getItem('ABSEN_SAKIT_IZIN')||'[]');
+    logs.push({nama:nama,tipe:tipe,alasan:alasan,time:data.jam,date:new Date().toDateString(),full:data.waktu});
+    localStorage.setItem('ABSEN_SAKIT_IZIN',JSON.stringify(logs));
+    load();
+
+    status.textContent='✅ '+tipe+' terkirim ke '+EMAIL+'!';
+    status.style.color='#25D366';
+    btn.textContent='✅ TERKIRIM!';
+    toast('✅ '+tipe+' berhasil dikirim!');
+    document.getElementById('alasan').value='';
+
   }catch(e){
-    window.location.href=`mailto:doyzzkaciw@gmail.com?subject=${encodeURIComponent('ABSEN 7D SAKIT IZIN')}&body=${encodeURIComponent(txt)}`;
-    btn.textContent='📧 BUKA GMAIL';
+    // fallback mailto
+    window.open(`mailto:${EMAIL}?subject=[7D] ${tipe} - ${nama} - ${data.tanggal}&body=Nama: ${nama}%0AKelas: 7D%0ATipe: ${tipe}%0AAlasan: ${alasan}%0ATanggal: ${data.tanggal}%0AJam: ${data.jam}`,'_blank');
+    status.textContent='✅ Disimpan, buka Gmail untuk kirim';
+    btn.disabled=false; btn.textContent='KIRIM KE GURU 🚀';
   }
-  setTimeout(()=>{btn.textContent='📧 KIRIM SEMUA KE GMAIL'; btn.disabled=false;},3500);
-};
-
-animOverlay.onclick=()=>animOverlay.classList.remove('show');
-
-// INIT
-render();
-// auto save anti refresh
-setInterval(save,2000);
-window.addEventListener('beforeunload',save);
+}
 </script>
 </body>
 </html>
