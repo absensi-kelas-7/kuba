@@ -1,114 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABSEN 7D SMPKUBA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SEVENNDE SMPKUBA </title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden}
-body{background:#000;display:flex;justify-content:center;align-items:center;font-family:Arial Black}
-#bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,#7c3aed,#1e0a5e,#000);z-index:0}
-#blur{position:fixed;inset:0;backdrop-filter:blur(30px);background:rgba(0,0,0,0.6);z-index:1}
-#wrap{position:relative;z-index:10;width:96%;max-width:420px}
-#card{background:white;border-radius:26px;overflow:hidden;border:4px solid black;box-shadow:0 0 60px rgba(124,58,237,0.7)}
-#top{background:#e10600;padding:16px;text-align:center}
-#top h1{color:white;font-size:48px;letter-spacing:5px;text-shadow:3px 3px 0 black}
-#top p{color:white;letter-spacing:4px;font-size:13px}
-#mid{padding:22px;display:flex;align-items:center;justify-content:center;background:white;border-top:4px solid black;border-bottom:4px solid black}
-#graffiti{font-family:Impact;font-size:52px;line-height:0.9;color:#5b21b6;transform:rotate(-4deg) skew(-7deg);text-shadow:4px 4px 0 white,9px 9px 0 #1e1b4b;text-align:center}
-#content{padding:14px;background:#f4f4f5}
-#nama{width:100%;padding:13px;border:3px solid black;border-radius:12px;font-family:Arial;font-weight:900;margin-bottom:12px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.btnAbsen{padding:18px;border:3px solid black;border-radius:18px;font-weight:900;font-size:16px;cursor:pointer;transition:0.1s;color:white}
-.btnAbsen:active{transform:scale(0.94)}
-#btnSakit{background:#f59e0b} #btnIzin{background:#3b82f6}
-#list{max-height:22vh;overflow-y:auto;background:white;border:3px solid black;border-radius:12px;padding:8px;margin-bottom:10px}
-.item{font-family:Arial;font-size:11px;font-weight:800;padding:6px;display:flex;justify-content:space-between;border-bottom:1px solid #eee}
-#kirim{width:100%;padding:13px;background:black;color:white;border:3px solid black;border-radius:999px;font-weight:900}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial Black}
+#bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 15%,#7c3aed 0%,#4c1d95 30%,#000 75%);z-index:0}
+#blur{position:fixed;inset:0;backdrop-filter:blur(35px);-webkit-backdrop-filter:blur(35px);background:rgba(0,0,0,0.65);z-index:1}
 
-/* ANIMASI - TEKS GAK PATAH */
-#anim{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.92)}
-#anim.show{display:flex}
-#absenText{font-family:Impact;white-space:nowrap; /* INI BIAR GAK PATAH PUNG */ font-size:80px;color:white;letter-spacing:4px;text-shadow:0 0 30px #7c3aed,6px 6px 0 black;transform:scale(0.05);animation:absenAnim 3.5s cubic-bezier(0.34,1.56,0.64,1) forwards}
-@keyframes absenAnim{
-  0%{transform:scale(0.05);opacity:0;filter:blur(20px)}
-  30%{transform:scale(1.15);opacity:1;filter:blur(0)}
-  40%{transform:scale(1);opacity:1}
-  65%{transform:scale(1);opacity:1} /* DIEM 1 DETIK DI TENGAH */
-  100%{transform:scale(28);opacity:0;filter:blur(25px)}
+#wrap{position:relative;z-index:10;width:100%;height:100%;display:flex;justify-content:center;align-items:center;padding:14px}
+
+#card{width:100%;max-width:440px;background:#fff;border-radius:30px;overflow:hidden;border:4px solid #000;box-shadow:0 0 80px rgba(124,58,237,0.8),0 30px 100px rgba(0,0,0,1);display:flex;flex-direction:column;max-height:96vh}
+
+#top{background:#e10600;padding:18px;text-align:center;position:relative;flex-shrink:0}
+#top h1{color:#fff;font-size:54px;letter-spacing:6px;line-height:0.9;text-shadow:4px 4px 0 #000}
+#top p{color:#fff;font-size:14px;letter-spacing:5px;margin-top:3px}
+#drip{position:absolute;left:50%;top:82%;transform:translateX(-50%);width:210px;height:20px;background:#7a0000;border-radius:50%;filter:blur(4px)}
+
+#mid{padding:28px 18px;background:#fff;border-top:4px solid #000;border-bottom:4px solid #000;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;min-height:170px}
+#graffiti{font-family:Impact,Arial Black;font-size:58px;line-height:0.85;color:#5b21b6;text-transform:lowercase;transform:rotate(-4deg) skew(-7deg);text-shadow:5px 5px 0 #fff,11px 11px 0 #1e1b4b,0 0 40px rgba(91,33,182,1);text-align:center}
+#tag{position:absolute;right:10px;top:10px;writing-mode:vertical-rl;font-size:11px;letter-spacing:3px}
+
+#content{padding:14px;background:#f4f4f5;overflow-y:auto;flex:1}
+#nama{width:100%;padding:14px 14px;border:3px solid #000;border-radius:14px;font-family:Arial;font-weight:900;font-size:14px;outline:none;margin-bottom:12px}
+#nama:focus{border-color:#5b21b6;box-shadow:0 0 0 3px rgba(91,33,182,0.2)}
+
+.label{font-family:Arial;font-size:10px;font-weight:900;letter-spacing:2px;margin-bottom:8px;color:#000}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.btnAbsen{padding:20px 8px;border:3.5px solid #000;border-radius:20px;font-weight:900;font-size:18px;cursor:pointer;transition:0.12s;color:#fff;position:relative;overflow:hidden;letter-spacing:0.5px}
+.btnAbsen:active{transform:scale(0.93)}
+.btnAbsen::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:0.2s}
+.btnAbsen:active::after{opacity:1}
+#btnSakit{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 6px 0 #000,0 10px 20px rgba(245,158,11,0.4)}
+#btnIzin{background:linear-gradient(135deg,#3b82f6,#1d4ed8);box-shadow:0 6px 0 #000,0 10px 20px rgba(59,130,246,0.4)}
+
+#listWrap{background:#fff;border:3.5px solid #000;border-radius:16px;padding:10px;margin-bottom:12px;min-height:90px;max-height:28vh;overflow-y:auto}
+#listTitle{font-size:10px;letter-spacing:1.5px;background:#000;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;margin-bottom:8px}
+.item{font-family:Arial;font-size:12px;font-weight:800;padding:8px 6px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+#empty{font-family:Arial;font-size:11px;text-align:center;color:#9ca3af;padding:18px}
+
+#kirim{width:100%;padding:15px;background:#000;color:#fff;border:3.5px solid #000;border-radius:999px;font-weight:900;font-size:14px;letter-spacing:1px;cursor:pointer;box-shadow:0 5px 0 #333;transition:0.12s}
+#kirim:active{transform:translateY(3px);box-shadow:0 2px 0 #333}
+
+/* ANIMASI FULL - TEKS GAK PATAH SAMA SEKALI */
+#animOverlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;overflow:hidden}
+#animOverlay.show{display:flex}
+#animText{font-family:Impact,Arial Black;white-space:nowrap;word-break:keep-all;font-size:clamp(28px, 9vw, 72px);color:#fff;letter-spacing:3px;text-shadow:0 0 20px #7c3aed,0 0 60px #e10600,7px 7px 0 #000;transform:scale(0.05);opacity:0;will-change:transform,opacity,filter}
+#animText.animate{animation:absenFull 3.8s cubic-bezier(0.34,1.56,0.64,1) forwards}
+
+@keyframes absenFull{
+  0%{transform:scale(0.05) rotate(-12deg);opacity:0;filter:blur(30px)}
+  28%{transform:scale(1.2) rotate(2deg);opacity:1;filter:blur(0px)}
+  38%{transform:scale(1) rotate(0deg);opacity:1;filter:blur(0px)}
+  68%{transform:scale(1) rotate(0deg);opacity:1;filter:blur(0px)} /* DIEM 1.1 DETIK DI TENGAH */
+  100%{transform:scale(35) rotate(3deg);opacity:0;filter:blur(40px)}
 }
+
+#footer{font-family:Arial;font-size:8px;text-align:center;color:#9ca3af;margin-top:8px;letter-spacing:1px;line-height:1.4}
 </style>
 </head>
 <body>
-<div id="bg"></div><div id="blur"></div>
+<div id="bg"></div>
+<div id="blur"></div>
 
 <div id="wrap">
 <div id="card">
-  <div id="top"><h1>HELLO</h1><p>MY NAME IS</p></div>
-  <div id="mid"><div id="graffiti">sevennde<br>smpkuba</div></div>
-  <div style="background:#e10600;height:16px;border-top:4px solid black"></div>
+  <div id="top"><h1>HELLO</h1><p>MY NAME IS</p><div id="drip"></div></div>
+  <div id="mid">
+    <div id="graffiti">sevennde<br>smpkuba</div>
+    <div id="tag">ANGKATAN 2026</div>
+  </div>
+  <div style="background:#e10600;height:16px;border-top:4px solid #000;flex-shrink:0"></div>
+
   <div id="content">
-    <input id="nama" placeholder="Nama lu (Doyz - 7D)">
-    <!-- TOMBOL ABSEN ADA DISINI PUNG -->
+    <input id="nama" placeholder="Nama lu... contoh: Doyz - 7D" autocomplete="off">
+    
+    <div class="label">PILIH KETERANGAN ABSEN 👇 (TOMBOL GEDE)</div>
     <div class="row">
-      <button class="btnAbsen" id="btnSakit" onclick="absen('SAKIT')">🤒 SAKIT</button>
-      <button class="btnAbsen" id="btnIzin" onclick="absen('IZIN')">📄 IZIN</button>
+      <button class="btnAbsen" id="btnSakit" onclick="doAbsen('SAKIT')">🤒 SAKIT</button>
+      <button class="btnAbsen" id="btnIzin" onclick="doAbsen('IZIN')">📄 IZIN</button>
     </div>
-    <div id="list"><div style="font-family:Arial;font-size:11px;text-align:center;color:#999;padding:8px">Belum ada absen sakit/izin</div></div>
-    <button id="kirim">📧 KIRIM KE GMAIL</button>
+
+    <div id="listWrap">
+      <div id="listTitle">DAFTAR SAKIT / IZIN 7D</div>
+      <div id="list"></div>
+    </div>
+
+    <button id="kirim">📧 KIRIM SEMUA KE GMAIL</button>
+    <div id="footer">FULLSCREEN • SMPKUBA • ANTI REFRESH • KESIMPEN OTOMATIS<br>📧 doyzzkaciw@gmail.com</div>
   </div>
 </div>
 </div>
 
-<!-- ANIMASI FULL LAYAR -->
-<div id="anim"><div id="absenText">ABSEN 7D - <span id="st"></span></div></div>
+<!-- ANIMASI -->
+<div id="animOverlay"><div id="animText">ABSEN 7D - SAKIT</div></div>
 
 <script>
-const KEY='smpkuba_fix_not_break';
-let data=JSON.parse(localStorage.getItem(KEY)||'[]');
-const namaEl=document.getElementById('nama');
-namaEl.value=localStorage.getItem(KEY+'_nama')||'';
-namaEl.oninput=()=>localStorage.setItem(KEY+'_nama',namaEl.value);
+const KEY='FULL_FINAL_SMPKUBA_7D_V5';
+let data=[];
+try{ data=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ data=[]; }
+
+const namaInput=document.getElementById('nama');
+const listEl=document.getElementById('list');
+const animOverlay=document.getElementById('animOverlay');
+const animText=document.getElementById('animText');
+
+namaInput.value=localStorage.getItem(KEY+'_nama')||'';
+namaInput.addEventListener('input',()=>localStorage.setItem(KEY+'_nama', namaInput.value));
+
+function save(){ localStorage.setItem(KEY, JSON.stringify(data)); }
 
 function render(){
-  const list=document.getElementById('list');
-  if(data.length==0){list.innerHTML='<div style="font-family:Arial;font-size:11px;text-align:center;color:#999;padding:8px">Belum ada absen sakit/izin</div>';return;}
-  list.innerHTML='';
-  data.slice().reverse().forEach(d=>{
+  if(data.length===0){
+    listEl.innerHTML='<div id="empty">Belum ada yang absen sakit/izin.<br>Klik tombol SAKIT / IZIN di atas 👆</div>';
+    return;
+  }
+  listEl.innerHTML='';
+  data.slice().reverse().forEach((d,i)=>{
     const div=document.createElement('div'); div.className='item';
-    let c=d.status=='SAKIT'?'#f59e0b':'#3b82f6';
-    div.innerHTML=`<span>${d.nama}</span><span style="color:${c}">${d.status}</span>`;
-    list.appendChild(div);
+    const color = d.status==='SAKIT' ? '#f59e0b' : '#3b82f6';
+    const dotColor = d.status==='SAKIT' ? '#f59e0b' : '#3b82f6';
+    div.innerHTML=`<span><span class="dot" style="background:${dotColor}"></span>${d.nama} <span style="color:#9ca3af;font-size:10px">• ${d.tgl}</span></span><span style="color:${color}">${d.status}</span>`;
+    listEl.appendChild(div);
   });
 }
 
-function absen(status){
-  const nama=namaEl.value.trim()||'ANONIM 7D';
-  data.push({nama,status,tgl:new Date().toLocaleDateString('id-ID')});
-  localStorage.setItem(KEY,JSON.stringify(data));
-  render();
-  
-  // ANIMASI TEKS GAK PATAH
-  const anim=document.getElementById('anim');
-  document.getElementById('st').textContent=status;
-  const txt=document.getElementById('absenText');
-  anim.classList.add('show');
-  txt.style.animation='none'; void txt.offsetWidth;
-  txt.style.animation='absenAnim 3.5s cubic-bezier(0.34,1.56,0.64,1) forwards';
-  if(navigator.vibrate) navigator.vibrate([80,40,80]);
-  setTimeout(()=>anim.classList.remove('show'),3300);
+function doAbsen(status){
+  const nama=namaInput.value.trim() || 'ANONIM 7D';
+  const tgl=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'short'})+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  data.push({nama,status,tgl,ts:Date.now()});
+  save(); render();
+
+  // ANIMASI - TEKS GAK PATAH (nowrap)
+  animText.textContent=`ABSEN 7D - ${status}`;
+  animText.style.color = status==='SAKIT' ? '#fbbf24' : '#60a5fa';
+  animOverlay.classList.add('show');
+  animText.classList.remove('animate');
+  void animText.offsetWidth;
+  animText.classList.add('animate');
+  if(navigator.vibrate) navigator.vibrate([90,40,90]);
+  setTimeout(()=>animOverlay.classList.remove('show'),3700);
 }
 
 document.getElementById('kirim').onclick=async()=>{
-  if(data.length==0){alert('Belum ada data!');return;}
-  let msg=data.map(d=>`${d.nama} - ${d.status} - ${d.tgl}`).join('\n');
+  if(data.length===0){ alert('Belum ada absen pung! Klik SAKIT atau IZIN dulu!'); return; }
+  const btn=document.getElementById('kirim');
+  const txt=`ABSEN 7D - SEVENNDE SMPKUBA (SAKIT/IZIN)\n\nTotal: ${data.length} data\n\n`+data.map(d=>`${d.tgl} | ${d.nama} | ${d.status}`).join('\n')+`\n\nLink: ${location.href}`;
+  btn.textContent='⏳ MENGIRIM...'; btn.disabled=true;
   try{
-    await fetch('https://formsubmit.co/ajax/doyzzkaciw@gmail.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:'ABSEN 7D SAKIT IZIN',message:msg,_captcha:'false'})});
-    alert('✅ Kekirim ke Gmail!');
-  }catch{ location.href=`mailto:doyzzkaciw@gmail.com?body=${encodeURIComponent(msg)}`; }
+    const res=await fetch('https://formsubmit.co/ajax/doyzzkaciw@gmail.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({subject:`[7D SAKIT/IZIN] ${data.length} data`,message:txt,_captcha:'false',_template:'table'})
+    });
+    if(res.ok){ alert(`✅ BERHASIL!\n\n${data.length} data absen sakit/izin udah kekirim ke\ndoyzzkaciw@gmail.com`); btn.textContent='✅ TERKIRIM'; }
+    else throw new Error();
+  }catch(e){
+    window.location.href=`mailto:doyzzkaciw@gmail.com?subject=${encodeURIComponent('ABSEN 7D SAKIT IZIN')}&body=${encodeURIComponent(txt)}`;
+    btn.textContent='📧 BUKA GMAIL';
+  }
+  setTimeout(()=>{btn.textContent='📧 KIRIM SEMUA KE GMAIL'; btn.disabled=false;},3500);
 };
 
+animOverlay.onclick=()=>animOverlay.classList.remove('show');
+
+// INIT
 render();
+// auto save anti refresh
+setInterval(save,2000);
+window.addEventListener('beforeunload',save);
 </script>
 </body>
 </html>
